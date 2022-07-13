@@ -1,20 +1,20 @@
 import express from 'express';
-import invoiceRouter from './routes/index';
+import swaggerUi from 'swagger-ui-express';
+import router from './routes';
+import swaggerSetup from './docs/swagger';
 
-const PORT = 3000
+const PORT = 3000;
 
-const app = express()
+export const app = express();
 
-app.use(express.json())
+app.use(express.json());
 
 app.get('/', (_, res) => {
-    console.log('hola')
-    res.send('wena')
-})
-
-app.use('/api/invoice', invoiceRouter)
+  res.send('Conectado correctamente');
+});
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSetup));
+app.use('/api', router);
 
 app.listen(PORT, () => {
-    console.log(`Server running on port: ${PORT}`)
-})
-
+  console.log(`Server running on port: ${PORT}`);
+});
