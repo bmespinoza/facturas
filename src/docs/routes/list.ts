@@ -25,5 +25,7 @@
  *          required: true
  *      responses:
  *          200:
- *              description: "returned the list of clients"
+ *              description: "returned the list of clients ordered by amount"
+ *          400:
+ *              description: "some parameters are missing or date format is invalid. Follow this format: YYYY-MM-DD"
  */
